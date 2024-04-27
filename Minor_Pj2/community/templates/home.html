@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h1>Recent Blogs</h1>
+<hr>
+    {% for post in object_list %}
+        <div class='blog-home container'>
+            <div class='blog-title'>
+                <a href="{% url 'article-detail' post.pk %}">{{ post.title }} </a>
+                <label>Posted on: {{ post.created_at }}</label>
+            </div>
+            <p>Posted By:{{ post.author }}</p>
+            <p>{{ post.body|slice:'100' }}......</p>
+            <hr>
+        </div>
+    {% endfor %}
+
+{% endblock %}

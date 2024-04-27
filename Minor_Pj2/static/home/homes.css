@@ -1,0 +1,233 @@
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+
+* {
+    box-sizing: border-box;
+}
+
+.button {
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 15px;
+    background-color: #45AB19;
+    border-radius: 20px;
+    border-width: 0px;
+    font-weight: bold;
+    height: 40px;
+    width: 100px;
+}
+
+.nav-link {
+    color: #12022f;
+    font-family: "Open Sans";
+    font-size: 15px;
+}
+
+.nav-heading {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.navbar-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.main-container {
+    background-color: #ECECEC;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.bg-container {
+    /* background-image: url('https://i.ibb.co/Dk1m9VM/pngtree-crop-green-rice-light-effect-wallpaper-image-571433.jpg'); */
+    background-size:cover; 
+    background-position: center; 
+    background-repeat: no-repeat;
+    padding: 20px;
+    border-radius: 20px;
+    overflow: hidden;
+    display:flex;
+}
+.farm-info{
+    width: 70%;
+    color: black;
+    font-family: Poppins;
+}
+.farm-info p{
+    color: white;
+    font-family: Poppins;
+}
+.info-container {
+    backdrop-filter: blur(15px);
+    width:20%;
+    height: 30%;
+    border-radius: 1%;
+    color: white;
+    margin-left: auto;
+}
+
+.sub-container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.date-heading {
+    color: #ffffff;
+    font-size: 25px;
+}
+
+.temp-heading {
+    color: #ffffff;
+    font-size: 40px;
+}
+.icon{
+    width: 20px;
+    height: 15px;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+.icon-heading{
+    width: 20px;
+    height: 15px;
+    color: #ffffff;
+}
+.icon-container{
+    margin: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+.icon-container span{
+    color: white;
+}
+.desc p{
+    padding-left: 10px;
+    color: white;
+    font-family: Poppins;
+}
+.search-bar{
+    height: 60px;
+    width: 100%;
+    max-width: 300px;
+    /* background: rgba(255,255,255,0.2); */
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    padding: 10px 20px;
+    backdrop-filter: blur(15px) saturate(100%);
+}
+.search-bar input{
+    background: transparent;
+    flex: 1;
+    border: 0;
+    outline: none;
+    font-size: 20px;
+    color: #ffffff;
+}
+.search-bar ::placeholder{
+    color: #ffffff;
+    font-family: Poppins;
+    font-weight: 250;
+}
+.search-bar span{
+    color: white;
+}
+.predict-button {
+    color: #ffffff;
+    font-family: "Open Sans";
+    font-size: 15px;
+    background-color: #45AB19;
+    border-radius: 20px;
+    border-width: 0px;
+    font-weight: bold;
+    height: 60px;
+    padding: 20px;
+    width: 100px;
+}
+.msp-wrapper{
+    margin: 10px;
+    border: 5px;
+    border-radius:20px ;
+    /* background-color: grey; */
+}
+
+.msp-info{
+    margin: 5%;
+    font-family: Poppins;
+
+}
+.msp-info strong{
+    font-size: 30px;
+}
+
+.price{
+    margin-left: 5%;
+    font-family: Poppins;
+}
+.glow-input{
+    width: 30%;
+    
+}
+.glow-input:focus {
+    border-color: #80bdff;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+.price-wrapper{
+    margin: 10px;
+    border: 5px;
+    border-radius:20px ;
+    /* background-color: grey; */
+}
+
+.footerwrapper{
+    margin: 10px;
+    background-color: #1f6f1b;
+    border-radius: 20px;
+}
+.footer{
+    margin-top: 20px;
+    margin: 10px;
+    background-color: #45AB19;
+    color: white;
+    text-decoration: none;
+    font-family: Poppins;
+    border-radius: 20px;
+}
+.footer-inner{
+    margin: 2%;
+}
+.footer-inner a{
+    color: white;
+}
+.community{
+    margin: 2%;
+}
+.community h1{
+    text-decoration: underline;
+}
+
+
+.blog-home a{
+    font-size: 200%;
+    text-decoration: none;
+    font-family: Poppins;
+    color: black;
+}
+.blog-home p{
+    font-family: Poppins;
+    color: grey;
+}
+.blog-title{
+    display: flex;
+    justify-content: space-between;
+    font-family: Poppins;
+}
+.blog-title label{
+    color: grey;
+}
+.blog-title :hover{
+    text-decoration: underline;
+}

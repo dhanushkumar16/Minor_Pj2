@@ -1,0 +1,49 @@
+Crop,Fertilizer
+cotton,12:32:16 NPK
+cotton,13:32:26 NPK
+cotton,DAP
+cotton,Magnesium Sulphate
+ginger,Ammonium Sulphate
+ginger,DAP
+ginger,Urea
+gram,18:46:00 NPK
+gram,DAP
+gram,MOP
+gram,Sulphur
+grapes,10:10:10 NPK
+grapes,Ferrous Sulphate
+grapes,Hydrated Lime
+groundnut,Chilated Micronutrient
+groundnut,SSP
+jowar,10:26:26 NPK
+jowar,SSP
+jowar,Urea
+maize,MOP
+maize,SSP
+maize,Urea
+masoor,DAP
+masoor,Urea
+moong,MOP
+moong,SSP
+moong,Urea
+rice,50:26:26 NPK
+rice,Urea
+soybean,20:20:20 NPK
+soybean,SSP
+soybean,Urea
+sugarcane,DAP
+sugarcane,MOP
+sugarcane,Urea
+tur,MOP
+tur,SSP
+tur,Urea
+turmeric,Ferrous Sulphate
+turmeric,Urea
+turmeric,White Potash
+urad,DAP
+urad,SSP
+urad,Urea
+wheat,19:19:19 NPK
+wheat,Urea
+pigeonpeas,NPK 19:19:19
+pigeonpeas,NPK 06:05:43

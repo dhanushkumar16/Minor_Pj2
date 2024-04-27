@@ -1,0 +1,163 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="{% static 'home/homes.css' %}">
+    <title>Farm Management System </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    {% comment %} <script src="script.js"></script> {% endcomment %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20,300,0,-25" />
+    <style>
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <h1 class="nav-heading">Farm Management System</h1>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation" onclick="toggleNav()">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+            <div class="navbar-nav ml-auto">
+                <a class="nav-link" href="#price">Price Tracking</a>
+                <a class="nav-link" href="{% url 'recommend' %}">Crop Analysis</a>
+                <a class="nav-link" href="{% url 'chatbot_view' %}">Chat Bot</a>
+                <a class="nav-link" href="{% url 'blog-home' %}">Community</a>
+                <a class="nav-link" href="{% url 'login' %}">
+                        {% if user.is_authenticated %}
+                            <button class="button" href="{% url 'home' %}">Logout</button>
+                        {% else %}
+                            <button class="button" href="{% url 'home' %}">Login</button>
+                        {% endif %}
+                </a>
+            </div>
+        </div>
+    </nav>
+    {% if messages %}
+        {% for message in messages%}
+          <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+            
+        {% endfor %}
+    {% endif%}
+    <div class="main-container">
+        <div class="bg-container">
+            <div class='farm-info'>
+                <h1>Farm Management System</h1>
+                <p> 
+                    The farm management system is a comprehensive digital platform designed to assist farmers in optimizing their operations and improving productivity. By integrating a crop recommendation system, chatbot, price analysis, and community features, the system offers farmers essential resources and data-driven insights.
+                    
+                    The crop recommendation system uses advanced algorithms and data analytics to provide tailored recommendations on the best crops to grow based on soil health, climate conditions, market trends, and past performance. This allows farmers to make informed decisions that maximize their yield and profits.
+                    
+                    Additionally, the system includes a chatbot that serves as a virtual assistant for farmers. It answers questions related to farming practices, pest control, weather forecasts, and more, providing timely and accurate information to support farmers in making day-to-day decisions.
+                    
+                    The price analysis feature offers real-time price information for various crops and market trends, enabling farmers to access up-to-date market prices and plan their sales and trading strategies more effectively.
+                    
+                    Moreover, the community forum connects farmers, industry experts, and agricultural enthusiasts in one space. Farmers can share experiences, seek advice, and discuss innovative farming techniques, fostering knowledge-sharing and continuous learning.
+                    
+                    Overall, the farm management system empowers farmers with a powerful set of tools to manage their farms more efficiently and profitably. It enables them to leverage data and technology to drive sustainable growth and success in their agricultural endeavors.
+                </p>
+            </div>
+            <div class="info-container">
+                <div class="sub-container">
+                    <div class="date-container">
+                        <h1 class="date-heading"> {{ day_of_week }}<br> {% now "Y-m-d" %}</h1>
+                    </div>
+                    <div class="temp-container">
+                        <h1 class="temp-heading">{{ temperature }}<sup>o</sup>c</h1>
+                    </div>
+                </div>
+                <div class="icon-container">
+                    <div class="d-flex flex-row">
+                        <span class="material-symbols-sharp">
+                            sunny
+                        </span>
+                        <p class="icon-heading">Sunny</p>
+                    </div> 
+                    <div class="d-flex flex-row ">
+                        <span class="material-symbols-sharp">
+                            air
+                        </span>
+                        <p class="icon-heading">{{ wind_speed }}mpH</p>
+                    </div>
+                    <div class="d-flex flex-row">
+                        <span class="material-symbols-sharp">
+                            water_drop
+                        </span>
+                        <p class="icon-heading">{{ humidity }}%</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class='msp-wrapper'>
+        <div class="msp-info">
+            <strong>Minimum Support Price</strong>
+            <p>The Minimum Support Price (MSP) is a policy mechanism used in many countries to stabilize the income of farmers and ensure that they receive a fair price for their crops. It is a government-determined price at which the government commits to purchasing certain crops from farmers. The primary goal of the MSP is to protect farmers from price fluctuations in the market and to ensure they receive a minimum income for their produce.</p>
+    
+            <p>The MSP is typically announced before each planting season and covers a range of crops, such as cereals, pulses, oilseeds, and other staples. The government establishes the MSP based on factors such as production costs, supply and demand, market trends, and the overall state of the agricultural economy. By setting a floor price for crops, the MSP provides a safety net for farmers, safeguarding them from market volatility and helping them maintain financial stability.</p>
+                
+            <p>The policy also plays a crucial role in promoting food security by incentivizing the production of essential crops and maintaining a steady supply. In addition, the MSP supports rural livelihoods and agricultural development by providing farmers with more predictable income and encouraging them to continue farming.</p>
+                
+            <p>Overall, the Minimum Support Price serves as a key policy tool for governments to ensure a fair and stable agricultural market while supporting the welfare of farmers and rural communities.</p>
+        </div>
+    </div>
+    <section id='price'>
+        <div class='price-wrapper'>
+            <div class="price">
+                <h1>Minimum Support Price Visualizations</h1>
+                <form class="search" method='post' action="{% url 'plot_graph' %}">
+                    {% csrf_token %}
+                    <input type="text" id="message-input" class="glow-input" placeholder="Enter a Crop" name='crop'>
+                    <button class="predict-button" type='submit'>GetInfo</button>
+                </form>
+    
+                <p> An Overview of the Minimum Support prices of major crops given by the Government of India</p>
+                {{ plot_html|safe }}
+             </div>
+        </div>
+    </section>
+
+    <div class='community'>
+        <h1> Trending Posts</h1><br>
+            {% for post in blog_posts %}
+                <div class='blog-home container'>
+                    <div class='blog-title'>
+                        <a href="{% url 'article-detail' post.pk %}">{{ post.title }} </a>
+                        <label>Posted on: {{ post.created_at }}</label>
+                    </div>
+                    <p>Posted By:{{ post.author }}</p>
+                    <p>{{ post.body|slice:'100' }}......</p>
+                    <hr>
+                </div>
+            {% endfor %}
+    </div>
+
+
+    <div class="footerwrapper"><br>
+        <div class="footer">
+            <div class="footer-inner">
+                <p>Data Sources</p>
+            <ul>Useful Links:
+                <li><a href='https://data.gov.in/'>data.gov.in</a></li>
+                <li><a href='https://www.kaggle.com/'>kaggle</a></li>
+            </ul>
+            <p>Documentations Referred:</p>
+            <ul>Useful Links:
+                <li><a href='https://www.djangoproject.com/'>django</a></li>
+                <li><a href='https://scikit-learn.org/stable/modules/tree.html'>Decsion Trees</a></li>
+                <li><a href='https://developer.mozilla.org/en-US/'>MDN Web Docs</a></li>
+                <li><a href='https://www.nltk.org/'>NLTK</a></li>
+            </ul>
+            </div>
+        </div>
+        <br>
+    </div>
+    {% comment %} <script src="script.js"></script> {% endcomment %}
+</body>
+
+</html>

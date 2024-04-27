@@ -1,0 +1,107 @@
+{% comment %} <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatbot</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .glow-input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1>Agriculture Chatbot</h1>
+        <hr>
+        <div id="chat-area" style="height: 300px; overflow-y: scroll;"></div>
+        <input type="text" id="message-input" class="form-control mt-3 glow-input" placeholder="Type your message..." name='message'>
+        <button id="send-btn" class="btn btn-primary mt-3">Send</button>
+        <a href="#" id="back-btn" class="btn btn-secondary mt-3">Back</a>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>  
+    <script>
+        var csrfToken = "{{ csrf_token }}";
+        $(document).ready(function() {
+            $('#message-input').focus(function() {
+                $(this).addClass('glow-input');
+            }).blur(function() {
+                $(this).removeClass('glow-input');
+            });
+
+            $('#send-btn').click(function() {
+                var message = $('#message-input').val();
+                if (message.trim()) {
+                    $('#chat-area').append('<p>You: ' + message + '</p>');
+                    $('#message-input').val('');
+                    $.ajax({
+                        url: '{% url "chatbot_view" %}',
+                        type: 'POST',
+                        data: {
+                            'message': message,
+                            'csrfmiddlewaretoken': csrfToken  // Include CSRF token in the data
+                        },
+                        success: function(data) {
+                            $('#chat-area').append('<p>Chatbot: ' + data.message + '</p>');
+                            $('#chat-area').scrollTop($('#chat-area')[0].scrollHeight);
+                        }
+                    });
+                }
+            });
+
+            $('#back-btn').click(function() {
+                window.history.back();
+            });
+        });
+    </script>
+</body>
+</html> {% endcomment %}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatbot</title>
+    <script>
+        function sendQuery() {
+            // Get the user query from the input field
+            var query = document.getElementById("user-query").value;
+            
+            // Send the query to the chatbot view using fetch
+            fetch('/chatbot/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify({
+                    'query': query
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Display the chatbot response in the response container
+                var responseContainer = document.getElementById("response-container");
+                responseContainer.innerHTML = "<p><strong>Chatbot:</strong> " + data.response + "</p>";
+                
+                // If there are any entities extracted, display them
+                if (data.entities.length > 0) {
+                    responseContainer.innerHTML += "<p><strong>Entities:</strong> " + data.entities.join(', ') + "</p>";
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Chatbot</h1>
+    <form onsubmit="event.preventDefault(); sendQuery();">
+        <input type="text" id="user-query" placeholder="Ask me anything...">
+        <input type="submit" value="Send">
+    </form>
+    <div id="response-container"></div>
+</body>
+</html>

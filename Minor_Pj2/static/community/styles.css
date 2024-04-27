@@ -1,0 +1,21 @@
+.blog-home a{
+    font-size: 200%;
+    text-decoration: none;
+    font-family: Poppins;
+    color: black;
+}
+.blog-home p{
+    font-family: Poppins;
+    color: grey;
+}
+.blog-title{
+    display: flex;
+    justify-content: space-between;
+    font-family: Poppins;
+}
+.blog-title label{
+    color: grey;
+}
+.blog-title :hover{
+    text-decoration: underline;
+}
